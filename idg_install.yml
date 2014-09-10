@@ -1,0 +1,15 @@
+---
+- hosts: server:client:storage
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero/idg state=directory
+
+    - name: copy source files
+      copy: src={{ item }} dest=/root/sodero/idg/
+      with_fileglob:
+        - ./idg/idg_server
+        - ./idg/idg_client
+        - ./idg/idg_storage
+        - ./idg/test_server
+        - ./idg/test_client                

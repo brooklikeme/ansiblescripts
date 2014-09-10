@@ -1,0 +1,38 @@
+---
+- hosts: server
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero/idg state=directory      
+    - name: copy source files
+      copy: src={{ item }} dest=/root/sodero/idg/
+      with_fileglob:
+        - ./idg/idg_server
+
+- hosts: storage
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero/idg state=directory      
+    - name: copy source files
+      copy: src={{ item }} dest=/root/sodero/idg/
+      with_fileglob:
+        - ./idg/idg_storage
+    - name: execute storages
+      shell: ./idg_storage {{ target }} 2>&1 > idg_storage.log chdir=/root/sodero/idg
+      async: 86400
+      poll: 0      
+
+- hosts: client
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero/idg state=directory      
+    - name: copy source files
+      copy: src={{ item }} dest=/root/sodero/idg/
+      with_fileglob:
+        - ./idg/idg_client      
+    - name: execute clients
+      shell: ./idg_client 2>&1 > idg_client.log chdir=/root/sodero/idg
+      async: 86400
+      poll: 0

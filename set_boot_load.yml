@@ -1,0 +1,9 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: copy shell files
+      copy: src=./set_boot_load.sh dest=/root/sodero/
+
+    - name: set load if needed
+      shell: ./set_boot_load.sh chdir=/root/sodero/

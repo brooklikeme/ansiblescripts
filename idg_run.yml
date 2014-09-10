@@ -1,0 +1,24 @@
+---
+- hosts: storage
+  gather_facts: False
+  tasks:
+    - name: kill idg storage
+      shell: pkill -f idg_storage
+      ignore_errors: True      
+      
+    - name: execute storages
+      shell: ./idg_storage {{ target }} 2>&1 > idg_storage.log chdir=/root/sodero/idg
+      async: 86400
+      poll: 0      
+
+- hosts: client
+  gather_facts: False
+  tasks:
+    - name: kill idg client
+      shell: pkill -f idg_client
+      ignore_errors: True
+      
+    - name: execute clients
+      shell: ./idg_client 2>&1 > idg_client.log chdir=/root/sodero/idg
+      async: 86400
+      poll: 0

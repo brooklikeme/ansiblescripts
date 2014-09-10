@@ -1,0 +1,63 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/.ssh state=directory      
+    - name: copy ssh files 
+      copy: src={{ item }} dest=/root/.ssh/
+      with_fileglob:
+        - ./ssh/*
+    - name: delete known_hosts file
+      file: dest=/root/.ssh/known_hosts state=absent
+    - name: change id_ras file permissions
+      file: dest=/root/.ssh/id_rsa mode=0600
+      
+
+    - name: copy temp files to rack1
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack1"]
+
+    - name: copy temp files to rack2
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack2"]
+      
+    - name: copy temp files to rack3
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack3"]
+      
+    - name: copy temp files to rack4
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack4"]            
+      
+    - name: copy temp files to rack5
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack5"]            
+      
+    - name: copy temp files to rack6
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack6"]            
+      
+    - name: copy temp files to rack7
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack7"]            
+      
+    - name: copy temp files to rack8
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack8"]            
+      
+    - name: copy temp files to rack9
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack9"]            
+      
+    - name: copy temp files to rack10
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack10"]            
+      
+    - name: copy temp files to rack11
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack11"]            
+      
+    - name: copy temp files to rack12
+      shell: scp -o "StrictHostKeyChecking no" /root/.ssh/authorized_keys {{ item }}:/tmp/
+      with_items: groups["rack12"]                                                            

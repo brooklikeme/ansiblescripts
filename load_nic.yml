@@ -1,0 +1,5 @@
+---
+- hosts: client:storage
+  tasks:      
+    - name: reload nic driver
+      shell: modprobe -r mlx4_en;modprobe mlx4_en

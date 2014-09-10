@@ -1,0 +1,25 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero state=directory      
+      
+    - name: copy shell files
+      copy: src={{ item }} dest=/root/sodero/
+      with_fileglob:
+        - ./mlx_checkload.sh
+        - ./set_boot_load.sh
+        - ./arp_install.sh
+      
+    - name: reload module if needed
+      shell: ./mlx_checkload.sh chdir=/root/sodero/
+        
+    - name: write ethernet card config file and restart NIC
+      shell: echo -e 'DEVICE=eth4\nONBOOT=yes\nTYPE=Ethernet\nBOOTPROTO=static\nIPADDR={{target}}\nNETMASK=255.255.0.0' > /etc/sysconfig/network-scripts/ifcfg-eth4; ifdown eth4; ifup eth4
+
+    - name: set arp rule
+      shell: ./arp_install.sh chdir=/root/sodero/
+      
+    - name: set load if needed
+      shell: ./set_boot_load.sh chdir=/root/sodero/

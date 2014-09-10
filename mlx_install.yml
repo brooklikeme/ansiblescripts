@@ -1,0 +1,9 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: copy shell files
+      copy: src=./mlx_checkload.sh dest=/root/sodero/
+
+    - name: reload module if needed
+      shell: ./mlx_checkload.sh chdir=/root/sodero/

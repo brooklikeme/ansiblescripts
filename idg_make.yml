@@ -1,0 +1,32 @@
+---
+- hosts: mgr
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero/idg state=directory
+
+    - name: copy source files
+      copy: src={{ item }} dest=/root/sodero/idg/
+      with_fileglob:
+        - ./idg/*
+
+    - name: clean binary source files
+      command: make clean chdir=/root/sodero/idg
+        
+    - name: compile source files
+      command: make chdir=/root/sodero/idg
+      
+    - name: fetch idg_server file from remote
+      fetch: src=/root/sodero/idg/idg_server dest=./idg/ flat=yes
+
+    - name: fetch idg_client file from remote
+      fetch: src=/root/sodero/idg/idg_client dest=./idg/ flat=yes
+
+    - name: fetch idg_storage file from remote
+      fetch: src=/root/sodero/idg/idg_storage dest=./idg/ flat=yes
+
+    - name: fetch test_server file from remote
+      fetch: src=/root/sodero/idg/test_server dest=./idg/ flat=yes
+
+    - name: fetch test_client file from remote
+      fetch: src=/root/sodero/idg/test_client dest=./idg/ flat=yes

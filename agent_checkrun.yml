@@ -1,0 +1,6 @@
+---
+- hosts: client:storage
+  gather_facts: False
+  tasks:      
+    - name: execute run script if not running
+      shell: ./checkrun.sh chdir=/root/sodero/agent

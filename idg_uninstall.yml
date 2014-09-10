@@ -1,0 +1,30 @@
+---
+- hosts: server
+  gather_facts: False
+  tasks:
+    - name: kill idg server
+      shell: pkill -f idg_server
+      ignore_errors: True
+                    
+    - name: delete directory
+      file: dest=/root/sodero/idg state=absent
+      
+- hosts: storage
+  gather_facts: False
+  tasks:
+    - name: kill idg storage
+      shell: pkill -f idg_storage
+      ignore_errors: True        
+                    
+    - name: delete directory
+      file: dest=/root/sodero/idg state=absent      
+      
+- hosts: client
+  gather_facts: False
+  tasks:
+    - name: kill idg client
+      shell: pkill -f idg_client
+      ignore_errors: True
+                    
+    - name: delete directory
+      file: dest=/root/sodero/idg state=absent            

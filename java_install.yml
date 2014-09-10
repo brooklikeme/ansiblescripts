@@ -1,0 +1,8 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: install the latest version of java
+      yum: name=java-1.7.0-openjdk state=latest
+    - name: install the latest version of java-devel
+      yum: name=java-1.7.0-openjdk-devel state=latest

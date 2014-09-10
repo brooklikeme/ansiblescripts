@@ -1,0 +1,6 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: execute unload script
+      shell: ./unload.sh chdir=/root/sodero/agent

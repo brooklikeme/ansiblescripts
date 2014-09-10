@@ -1,0 +1,7 @@
+---
+- hosts: 10.1.0.202
+  gather_facts: False
+  tasks:
+    - name: ping servers
+      shell: ping {{item}} -c 1
+      with_items: groups["agent"]

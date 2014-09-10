@@ -1,0 +1,10 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: kill agent_client
+      shell: pkill -f agent_client
+      ignore_errors: True
+       
+    - name: delete directory
+      file: dest=/root/sodero/agent state=absent

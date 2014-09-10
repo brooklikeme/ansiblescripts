@@ -1,0 +1,19 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero/agent state=directory
+    
+    - name: copy source files
+      copy: src={{ item }} dest=/root/sodero/agent/
+      with_fileglob:
+        - ./agent/sodero.ko
+        - ./agent/agent_client
+        - ./agent/load.sh
+        - ./agent/unload.sh
+        - ./agent/checkrun.sh        
+        
+    - name: write run script
+      shell: echo -e 'nohup ./agent_client -n NODE{{target}} -h 10.1.0.202 -p3490 > agent_client.log 2>&1 &' > run.sh; chmod +x run.sh chdir=/root/sodero/agent
+        

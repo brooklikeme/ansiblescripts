@@ -1,0 +1,6 @@
+---
+- hosts: client:storage
+  gather_facts: False
+  tasks:
+    - name: execute load script
+      shell: ./load.sh chdir=/root/sodero/agent

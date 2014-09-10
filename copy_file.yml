@@ -1,0 +1,6 @@
+---
+- hosts: 10.1.0.16
+  gather_facts: False
+  tasks:            
+    - name: copy directory to hosts
+      file: dest=/root/sodero/hadoop dest=/root/hadoop

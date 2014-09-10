@@ -1,0 +1,6 @@
+---
+- hosts: agent
+  gather_facts: False
+  tasks:
+    - name: install the latest version of iperf
+      yum: name=iperf state=latest

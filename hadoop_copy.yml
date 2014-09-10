@@ -1,0 +1,51 @@
+---
+- hosts: 10.1.0.8
+  gather_facts: False
+  tasks:
+   - name: copy hadoop to rack1
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack1"]
+      
+   - name: copy hadoop to rack2
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack2"]
+
+   - name: copy hadoop to rack3
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack3"]
+
+   - name: copy hadoop to rack4
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack4"]
+
+   - name: copy hadoop to rack5
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack5"]
+
+   - name: copy hadoop to rack6
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack6"]
+
+   - name: copy hadoop to rack7
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack7"]
+
+   - name: copy hadoop to rack8
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack8"]
+
+   - name: copy hadoop to rack9
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack9"]
+
+   - name: copy hadoop to rack10
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack10"]
+
+   - name: copy hadoop to rack11
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack11"]
+
+   - name: copy hadoop to rack12
+     shell: scp -r -o "StrictHostKeyChecking no" /root/hadoop-1.2.1 {{item}}:/root/hadoop-1.2.1
+     with_items: groups["rack12"]

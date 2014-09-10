@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+    - name: copy script files
+      copy: src={{ item }} dest=/root/
+      with_fileglob:
+        - ./osu/*
