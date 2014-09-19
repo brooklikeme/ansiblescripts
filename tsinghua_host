@@ -1,3 +1,6 @@
+[localhost]
+localhost ansible_connection=local
+
 [mgr]
 10.1.0.202
 

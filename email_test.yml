@@ -1,0 +1,13 @@
+--- 
+- name: Testing email
+  hosts: localhost
+  tasks: 
+    - name: Send email
+      local_action: mail
+                    host='127.0.0.1'
+                    port=25
+                    subject="Ansible test mail"
+                    body="Testing email"
+                    from="tsinghua.osu@gmail.com"
+                    to="qiuxi.zhang@sodero.com"
+                    charset=utf8
