@@ -41,7 +41,7 @@ function mlxInstall {
 }
 
 function arpInstall {
-    ansible-playbook -i tsinghua_host arp_install.yml -u root -k
+    ansible-playbook -i tsinghua_host arp_install.yml -u qiuxi -k -s
 }
 
 function setBootLoad {

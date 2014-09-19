@@ -9,4 +9,4 @@
       copy: src=arp_install.sh dest=/root/sodero/
     
     - name: set arp rule
-      shell: ./arp_install.sh chdir=/root/sodero/
+      shell: export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH; ./arp_install.sh chdir=/root/sodero/
