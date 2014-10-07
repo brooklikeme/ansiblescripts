@@ -1,0 +1,9 @@
+---
+- hosts: part_servers
+  gather_facts: False
+  tasks:
+    - name: ensure target directory exists 
+      file: dest=/root/sodero state=directory      
+       
+    - name: copy shell files
+      copy: src=mlnx.tar dest=/root/sodero/
