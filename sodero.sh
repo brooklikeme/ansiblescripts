@@ -5,7 +5,7 @@ PLAYBOOK="tsinghua_host"
 NODE="agent"
 
 function doPing {
-    ansible $NODE -i tsinghua_host -m ping -u root -k
+    ansible part_servers -i tsinghua_host -m ping -u root -k
 }
 
 function doCommand {
@@ -29,7 +29,7 @@ function setTCPSack {
 }
 
 function crossPing {
-    ansible-playbook -i tsinghua_host cross_ping.yml -u root -k
+    ansible part_servers -i tsinghua_host -a 'ping 10.5.3.1 -c 2' -u root -k
 }
 
 function proxyPing {
@@ -41,7 +41,7 @@ function mlxInstall {
 }
 
 function arpInstall {
-    ansible-playbook -i tsinghua_host arp_install.yml -u qiuxi -k -s
+    ansible-playbook -i tsinghua_host arp_install.yml -u root -k
 }
 
 function setBootLoad {

@@ -1,12 +1,12 @@
 ---
-- hosts: agent
+- hosts: part_servers
   gather_facts: False
   tasks:
-    - name: ensure target directory exists 
-      file: dest=/root/sodero state=directory      
-       
-    - name: copy shell files
-      copy: src=arp_install.sh dest=/root/sodero/
+    # - name: ensure target directory exists
+    #   file: dest=/root/sodero state=directory
+    #
+    # - name: copy shell files
+    #   copy: src=arp_install.sh dest=/root/sodero/
     
     - name: set arp rule
       shell: export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH; ./arp_install.sh chdir=/root/sodero/

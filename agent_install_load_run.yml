@@ -1,5 +1,5 @@
 ---
-- hosts: agent
+- hosts: part_servers
   gather_facts: False
   tasks:            
     - name: ensure target directory exists 

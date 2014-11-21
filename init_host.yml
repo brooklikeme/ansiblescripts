@@ -1,5 +1,5 @@
 ---
-- hosts: 10.1.0.145
+- hosts: part_servers
   gather_facts: False
   tasks:
     - name: ensure target directory exists 
@@ -8,12 +8,12 @@
     - name: copy shell files
       copy: src={{ item }} dest=/root/sodero/
       with_fileglob:
-        - ./mlx_checkload.sh
+#        - ./mlx_checkload.sh
         - ./set_boot_load.sh
         - ./arp_install.sh
       
-    - name: reload module if needed
-      shell: ./mlx_checkload.sh chdir=/root/sodero/
+    # - name: reload module if needed
+    #   shell: ./mlx_checkload.sh chdir=/root/sodero/
         
     - name: write ethernet card config file and restart NIC
       shell: echo -e 'DEVICE=eth4\nONBOOT=yes\nTYPE=Ethernet\nBOOTPROTO=static\nIPADDR={{target}}\nNETMASK=255.255.0.0' > /etc/sysconfig/network-scripts/ifcfg-eth4; ifdown eth4; ifup eth4
